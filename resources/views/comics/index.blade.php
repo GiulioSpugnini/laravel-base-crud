@@ -5,7 +5,9 @@
 @section('section-id', 'comics-index')
 
 @section('content')
-
+    <div class="d-flex justify-content-end align-items-center">
+        <a class="btn btn-small btn-primary" href="{{ route('comics.create') }}">Aggiungi Fumetto</a>
+    </div>
     <ul>
         @forelse($comics as $comic)
             <li>
