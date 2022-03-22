@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('content')
     <form action="{{ route('comics.store') }}" method="POST">
+        @csrf
         <div class="row gy-2">
             <div class="col-6">
                 <div class="mb-3">
@@ -11,23 +12,23 @@
             </div>
             <div class="col-6">
                 <label for="title" class="form-label">Titolo</label>
-                <input type="url" class="form-control" id="title" name="title">
+                <input type="text" class="form-control" id="title" name="title">
             </div>
             <div class="col-6">
                 <label for="price" class="form-label">Prezzo</label>
-                <input type="url" class="form-control" id="price" name="price">
+                <input step="0.01" type="number" class="form-control" id="price" name="price">
             </div>
             <div class="col-6">
                 <label for="serie" class="form-label">Serie</label>
-                <input type="url" class="form-control" id="serie" name="series">
+                <input type="text" class="form-control" id="serie" name="series">
             </div>
             <div class="col-6">
                 <label for="sale_date" class="form-label">Data di vendita</label>
-                <input type="url" class="form-control" id="sale_date" name="sale_date">
+                <input type="date" class="form-control" id="sale_date" name="sale_date">
             </div>
             <div class="col-6">
                 <label for="type" class="form-label">Tipo</label>
-                <input type="url" class="form-control" id="type" name="type">
+                <input type="text" class="form-control" id="type" name="type">
             </div>
             <div class="col-12 text-center">
                 <div class="mb-3">
@@ -35,6 +36,12 @@
                     <textarea class="form-control" id="description" rows="3"></textarea>
                 </div>
             </div>
+        </div>
+        <div class="d-flex justify-content-end align-items-center">
+            <button type="submit" class="btn btn-primary">
+                Crea
+
+            </button>
         </div>
 
     </form>
