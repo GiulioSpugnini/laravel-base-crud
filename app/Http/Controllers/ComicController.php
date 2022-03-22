@@ -88,6 +88,5 @@ class ComicController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 }
