@@ -18,5 +18,3 @@ Route::get('/', function () {
 });
 
 Route::resource('comics', 'ComicController');
-// Route::get('/comics', 'ComicController');
-// Route::post('/comics', 'ComicController');
