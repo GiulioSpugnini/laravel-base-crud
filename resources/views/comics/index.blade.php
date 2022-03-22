@@ -9,7 +9,7 @@
     <ul>
         @forelse($comics as $comic)
             <li>
-                {{ $comic->title }}
+                <a href="{{ route('comics.show', $comic->id) }}">{{ $comic->title }}</a>
                 {{ $comic->description }}
                 <img src="{{ $comic->thumb }}" alt="{{ $comic->title }}" class="img-fluid">
                 {{ $comic->price }}
