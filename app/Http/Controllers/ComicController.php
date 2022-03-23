@@ -36,8 +36,8 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
 
+        $data = $request->all();
         $comic = new Comic();
         $comic->fill($data);
         $comic->save();
@@ -72,12 +72,26 @@ class ComicController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comic $comic)
     {
-        //
+        $request->validate(
+            [
+                'title' => ['required', 'string', 'unique:comic'],
+                'thumb' => ['required', 'string'],
+                'price' => ['required', 'float'],
+                'series' => ['required', 'string'],
+                'sale_date' => ['required', 'date'],
+                'type' => ['required', 'string'],
+                'description' => ['required', 'string'],
+
+            ]
+        );
+        $data = $request->all();
+        $comic->update($data);
+        return redirect()->route('comics.show', $comic->id);
     }
 
     /**
