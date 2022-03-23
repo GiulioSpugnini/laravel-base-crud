@@ -33,6 +33,8 @@
             </div>
         </section>
     </main>
+    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('other-scripts')
 </body>
 
 </html>

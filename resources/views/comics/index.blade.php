@@ -5,6 +5,11 @@
 @section('section-id', 'comics-index')
 
 @section('content')
+    @if (session('messages'))
+        <div class="alert alert-danger">
+            {{ session('messages') }}
+        </div>
+    @endif
     <div class="d-flex justify-content-end align-items-center">
         <a class="btn btn-primary" href="{{ route('comics.create') }}">Aggiungi Fumetto</a>
     </div>
@@ -24,6 +29,12 @@
                     </div>
                 </div>
                 <div class=" d-flex justify-content-end">
+                    <form action="{{ route('comics.destroy', $comic->id) }}" method="POST" class="delete-form">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger me-2">Cancella</button>
+
+                    </form>
                     <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-secondary">
                         Modifica
                     </a>
@@ -35,4 +46,17 @@
     </div>
 
 
+@endsection
+
+@section('other-scripts')
+    <script>
+        const deleteForms = document.querySelectorAll('.delete-form');
+        deleteForms.forEach(form => {
+            form.addEventListener('submit'.(e) => {
+                e.preventDefault();
+                const confirm = confirm('Sei sicuro di voler cancellare?');
+                if (confirm) e.target.submit();
+            })
+        });
+    </script>
 @endsection
