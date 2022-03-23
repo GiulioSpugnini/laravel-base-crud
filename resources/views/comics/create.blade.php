@@ -1,18 +1,18 @@
 @extends('layouts.main')
 @section('content')
-    <form action="{{ route('comics.store') }}" method="POST">
+    <form class="my-3" action="{{ route('comics.store') }}" method="POST">
         @csrf
         <div class="row gy-2">
+            <div class="col-6">
+                <label for="title" class="form-label">Titolo</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
             <div class="col-6">
                 <div class="mb-3">
                     <label for="image" class="form-label">Immagine</label>
                     <input type="url" class="form-control" id="image" name="thumb">
                 </div>
 
-            </div>
-            <div class="col-6">
-                <label for="title" class="form-label">Titolo</label>
-                <input type="text" class="form-control" id="title" name="title">
             </div>
             <div class="col-6">
                 <label for="price" class="form-label">Prezzo</label>
@@ -33,13 +33,13 @@
             <div class="col-12 text-center">
                 <div class="mb-3">
                     <label for="description" class="form-label">Descrizione</label>
-                    <textarea class="form-control" id="description" rows="3" name="description"></textarea>
+                    <textarea class="form-control" id="description" rows="5" name="description"></textarea>
                 </div>
             </div>
         </div>
         <div class="d-flex justify-content-end align-items-center">
-            <button type="submit" class="btn btn-primary">
-                Crea
+            <button type="submit" class="btn btn-success">
+                Conferma
 
             </button>
         </div>
