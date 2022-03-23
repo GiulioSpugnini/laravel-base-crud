@@ -5,9 +5,9 @@
 @section('section-id', 'comics-index')
 
 @section('content')
-    @if (session('messages'))
-        <div class="alert alert-danger">
-            {{ session('messages') }}
+    @if (session('message'))
+        <div class="alert alert-{{ session('type') }}">
+            {{ session('message') }}
         </div>
     @endif
     <div class="d-flex justify-content-end align-items-center">
@@ -29,15 +29,15 @@
                     </div>
                 </div>
                 <div class=" d-flex justify-content-end">
+                    <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-secondary me-2">
+                        Modifica
+                    </a>
                     <form action="{{ route('comics.destroy', $comic->id) }}" method="POST" class="delete-form">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-danger me-2">Cancella</button>
+                        <button class="btn btn-danger" type="submit">Cancella</button>
 
                     </form>
-                    <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-secondary">
-                        Modifica
-                    </a>
                 </div>
             </div>
         @empty
@@ -52,11 +52,11 @@
     <script>
         const deleteForms = document.querySelectorAll('.delete-form');
         deleteForms.forEach(form => {
-            form.addEventListener('submit'.(e) => {
+            form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                const confirm = confirm('Sei sicuro di voler cancellare?');
-                if (confirm) e.target.submit();
-            })
+                const accept = confirm('Sei sicuro di voler cancellare?');
+                if (accept) e.target.submit();
+            });
         });
     </script>
 @endsection
