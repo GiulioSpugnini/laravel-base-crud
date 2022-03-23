@@ -27,9 +27,9 @@
     <main>
         <section id="@yield('section-id')">
             <div class="container">
-                <div class="card main-card p-5 my-5">
-                    @yield('content')
-                </div>
+
+                @yield('content')
+
             </div>
         </section>
     </main>

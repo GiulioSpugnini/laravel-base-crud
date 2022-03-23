@@ -6,22 +6,33 @@
 
 @section('content')
     <div class="d-flex justify-content-end align-items-center">
-        <a class="btn btn-small btn-primary" href="{{ route('comics.create') }}">Aggiungi Fumetto</a>
+        <a class="btn btn-primary" href="{{ route('comics.create') }}">Aggiungi Fumetto</a>
     </div>
-    <ul>
+
+    <div>
         @forelse($comics as $comic)
-            <li>
-                <a href="{{ route('comics.show', $comic->id) }}">{{ $comic->title }}</a>
-                {{ $comic->description }}
-                <img src="{{ $comic->thumb }}" alt="{{ $comic->title }}" class="img-fluid">
-                {{ $comic->price }}
-                {{ $comic->series }}
-                {{ $comic->sale_date }}
-                {{ $comic->type }}
-            </li>
+            <div class="border my-3 p-3">
+                <div class="d-flex flex-column align-items-start">
+                    <a class="h5" href="{{ route('comics.show', $comic->id) }}">{{ $comic->title }}</a>
+                    <img src="{{ $comic->thumb }}" alt="{{ $comic->title }}" class="img-fluid">
+                    <div>
+                        <h5>{{ $comic->price }}</h5>
+                        <h5>{{ $comic->series }}</h5>
+                        <p>{{ $comic->description }}</p>
+                        <h5>{{ $comic->sale_date }}</h5>
+                        <h5>{{ $comic->type }}</h5>
+                    </div>
+                </div>
+                <div class=" d-flex justify-content-end">
+                    <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-secondary">
+                        Modifica
+                    </a>
+                </div>
+            </div>
         @empty
             <h3>Non ci sono fumetti</h3>
         @endforelse
-    </ul>
+    </div>
+
 
 @endsection
